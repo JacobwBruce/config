@@ -1,11 +1,11 @@
 return {
-	"nvim-lualine/lualine.nvim",
-	config = function()
-		require("lualine").setup({
-			options = {
-				-- theme = 'ayu_mirage'
-				theme = "tokyonight",
-			},
-		})
-	end,
+  "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  opts = {
+    theme = "catppuccin",
+    options = {
+      component_separators = " ",
+      section_separators = { left = "", right = "" },
+    },
+  },
 }
