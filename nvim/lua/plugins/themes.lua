@@ -17,7 +17,7 @@ return {
 		},
 		config = function(opts)
 			require("catppuccin").setup(opts)
-			vim.cmd.colorscheme("catppuccin")
+			-- vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 	{
@@ -59,6 +59,16 @@ return {
 				end,
 			})
 			-- vim.cmd([[colorscheme tokyonight-night]])
+		end,
+	},
+	{
+		"sainnhe/sonokai",
+		priority = 1000,
+		config = function()
+			vim.g.sonokai_transparent_background = "1"
+			vim.g.sonokai_enable_italics = "1"
+			vim.g.sonokai_style = "andromeda"
+			vim.cmd.colorscheme("sonokai")
 		end,
 	},
 }
