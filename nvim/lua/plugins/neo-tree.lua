@@ -23,7 +23,8 @@ return {
     vim.keymap.set(
       "n",
       "<C-n>",
-      ":Neotree toggle filesystem reveal left<CR>",
+      -- ":Neotree toggle filesystem reveal left<CR>",
+      ":Neotree position=current<CR>",
       { silent = true, desc = "Toggle NeoTree" }
     )
   end,

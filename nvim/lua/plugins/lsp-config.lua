@@ -30,7 +30,7 @@ return {
         vim.lsp.buf.execute_command(params)
       end
 
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
         capabilities = capabilities,
         init_options = {
           preferences = {
@@ -81,21 +81,6 @@ return {
           },
         },
       })
-
-      lspconfig.solargraph.setup({
-        capabilities = capabilities,
-        cmd = { "solargraph", "stdio" },
-        filetypes = { "ruby" },
-        root_dir = function(fname)
-          return util.root_pattern("Gemfile", ".git")(fname) or util.path.dirname(fname)
-        end,
-        settings = {
-          solargraph = {
-            diagnostics = true,
-          },
-        },
-      })
-
       lspconfig.jdtls.setup({
         capabilities = capabilities,
       })
