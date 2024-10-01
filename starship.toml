@@ -7,7 +7,7 @@ format = """$python$directory$character"""
 #right_format = """$status$git_branch${custom.git_status_dirty}$git_status"""
 right_format = """$status$cmd_duration$git_branch${custom.git_status_dirty}$git_status"""
 
-palette="catppuccin"
+palette="sonokai"
 
 
 [palettes.catppuccin]
@@ -38,25 +38,31 @@ base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
 
-[palettes.wombat]
-black = '#000000'
-blue = '#5da9f6'
-cyan = '#82fff7'
-green = '#b1e969'
-purple = '#e86aff'
-red = '#ff615a'
-white = '#dedacf'
-yellow = '#ebd99c'
+[palettes.sonokai]
+black = "#181a1c"
+bg_dim = "#252630"
+bg0 = "#2b2d3a"
+bg1 = "#333648"
+bg2 = "#363a4e"
+bg3 = "#393e53"
+bg4 = "#3f445b"
+bg_red = "#ff6188"
+diff_red = "#55393d"
+bg_green = "#a9dc76"
+diff_green = "#394634"
+bg_blue = "#77d5f0"
+diff_blue = "#354157"
+diff_yellow = "#4e432f"
+fg = "#e1e3e4"
+red = "#fb617e"
+orange = "#f89860"
+yellow = "#edc763"
+green = "#9ed06c"
+blue = "#6dcae8"
+purple = "#bb97ee"
+grey = "#7e8294"
+grey_dim = "#5a5e7a"
 
-[palettes.wombat_256]
-black = '0'
-blue = '75'
-cyan = '123'
-green = '149'
-purple = '171'
-red = '203'
-white = '188'
-yellow = '223'
 
 [character]
 success_symbol = "[❯](purple)[❯](cyan)"
@@ -75,7 +81,8 @@ truncation_symbol = ""
 
 # right prompt uses left space padding
 [git_branch]
-format = ' [$branch]($style)'
+symbol = ""
+format = ' [ $symbol $branch]($style)'
 style = 'green'
 
 [git_status]
@@ -101,3 +108,10 @@ disabled = true
 [status]
 disabled = false
 symbol = ' ✘'
+
+[time]
+disabled = false
+format = "[  $time]($style)"
+time_format = "%R"
+utc_time_offset = "local"
+style = "italic dimmed white"
