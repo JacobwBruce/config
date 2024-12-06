@@ -5,8 +5,8 @@ return {
 		priority = 1000,
 		opts = {
 			flavour = "mocha",
-			term_colors = true,
-			transparent_background = false,
+			-- term_colors = true,
+			transparent_background = true,
 			integrations = {
 				harpoon = true,
 				neotree = true,
@@ -17,7 +17,6 @@ return {
 		},
 		config = function(opts)
 			require("catppuccin").setup(opts)
-			-- vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 	{
@@ -26,8 +25,12 @@ return {
 		config = function()
 			require("rose-pine").setup({
 				variant = "moon",
+				styles = {
+					bold = true,
+					italic = true,
+					transparency = true,
+				},
 			})
-			-- vim.cmd.colorscheme("rose-pine")
 		end,
 	},
 	{
@@ -35,15 +38,9 @@ return {
 		name = "nightfly",
 		lazy = false,
 		priority = 1000,
+		opts = {},
 		config = function()
-			-- vim.cmd.colorscheme("nightfly")
-		end,
-	},
-	{
-		"embark-theme/vim",
-		name = "embark",
-		config = function()
-			-- vim.cmd.colorscheme("embark")
+			vim.g.nightflyTransparent = true
 		end,
 	},
 	{
@@ -52,13 +49,13 @@ return {
 		priority = 1000,
 		config = function()
 			require("tokyonight").setup({
-				style = "night",
-				on_colors = function(colors)
-					-- colors.green = "#7AE582"
-					colors.green = "#85e6a9"
-				end,
+				style = "storm",
+				transparent = true,
+				-- on_colors = function(colors)
+				-- colors.green = "#7AE582"
+				-- colors.green = "#85e6a9"
+				-- end,
 			})
-			-- vim.cmd([[colorscheme tokyonight-night]])
 		end,
 	},
 	{
@@ -68,7 +65,53 @@ return {
 			vim.g.sonokai_transparent_background = "1"
 			vim.g.sonokai_enable_italics = "1"
 			vim.g.sonokai_style = "andromeda"
-			vim.cmd.colorscheme("sonokai")
+		end,
+	},
+	{
+		"EdenEast/nightfox.nvim",
+		name = "nightfox",
+		priority = 1000,
+		config = function()
+			require("nightfox").setup({
+				options = {
+					transparent = true,
+				},
+			})
+		end,
+	},
+	{
+		"sam4llis/nvim-tundra",
+		name = "tundra",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("nvim-tundra").setup({
+				transparent_background = true,
+			})
+			vim.g.tundra_biome = "arctic" -- 'arctic' or 'jungle'
+			vim.opt.background = "dark"
+		end,
+	},
+	{
+		"rebelot/kanagawa.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("kanagawa").setup({
+				transparent = true,
+			})
+		end,
+	},
+	{
+		"Yagua/nebulous.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("nebulous").setup({
+				disable = {
+					background = true,
+				},
+			})
 		end,
 	},
 }
