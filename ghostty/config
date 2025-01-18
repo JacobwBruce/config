@@ -1,0 +1,24 @@
+theme = Nocturnal Winter 
+# theme = Overnight Slumber
+# background = #000000
+background-opacity = 0.85
+background-blur-radius = 20
+
+# font-family = JetBrainsMonoNL Nerd Font 
+font-family = Cascadia Code NF
+font-size = 16
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor 
+
+macos-titlebar-style = hidden
+# macos-titlebar-proxy-icon = hidden
+
+# confirm-close-surface = false
+window-decoration = true
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+
+# By default Reload config with shft + cmd + ,
+keybind = super+r=reload_config
