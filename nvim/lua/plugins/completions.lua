@@ -81,7 +81,7 @@ return {
 			})
 
 			-- dadbod UI
-			cmp.setup.filetype({ "sql" }, {
+			cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
 				sources = {
 					{ name = "vim-dadbod-completion" },
 					{ name = "buffer" },
