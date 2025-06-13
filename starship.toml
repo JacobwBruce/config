@@ -222,7 +222,7 @@ RedHatEnterprise = "󱄛"
 #format = '[ $user ]($style)'
 
 [directory]
-style = "sapphire"
+style = "blue" #used to be sapphire
 format = "[ $path ]($style)"
 #truncation_length = 4
 #truncation_symbol = "…/"
