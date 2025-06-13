@@ -1,26 +1,21 @@
 # theme = Nocturnal Winter 
 theme = catppuccin-mocha
 # theme = Overnight Slumber
-# background = #000000
+background = #0D0D17
+
+
+# font-family = JetBrainsMonoNL Nerd Font Mono
+# font-family = Cascadia Code NF
+
+font-family = Maple Mono Medium
+
+# font-family = Monaspace Neon Var
+# font-feature=calt, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, liga
+
 background-opacity = 0.85
 background-blur-radius = 20
 
-# font-family = JetBrainsMonoNL Nerd Font 
-# font-family = Cascadia Code NF
-# font-family = Iosevka Term
-font-family = Monaspace Neon Var
-font-feature=calt, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, liga
-theme = Nocturnal Winter 
-# theme = Overnight Slumber
-# background = #000000
-background-opacity = 0.85
-background-blur-radius = 20
-
-# font-family = JetBrainsMonoNL Nerd Font 
-# font-family = Cascadia Code NF
-# font-family = Iosevka Term
-font-family = Monaspace Neon Var
-font-size = 15
+font-size = 16
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor 
@@ -36,7 +31,6 @@ window-padding-balance = true
 
 # By default Reload config with shft + cmd + ,
 keybind = super+r=reload_config
-font-size = 15
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor 

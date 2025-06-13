@@ -1,13 +1,56 @@
 add_newline = false
 
 # A minimal left prompt
-format = """$python$directory$character"""
+# format = """$python$directory$character"""
 
 # move the rest of the prompt to the right
 #right_format = """$status$git_branch${custom.git_status_dirty}$git_status"""
-right_format = """$status$cmd_duration$git_branch${custom.git_status_dirty}$git_status"""
 
-palette = "catppuccin"
+# right_format = """$status$cmd_duration$git_branch${custom.git_status_dirty}$git_status"""
+
+format = """
+ ➜\
+$directory\
+${custom.giturl}\
+$git_branch\
+$git_state\
+$git_status\
+$line_break\
+$character
+"""
+
+right_format = """$all"""
+
+palette = "catppuccin_custom"
+
+[palettes.catppuccin_custom]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
 
 [palettes.nightfly]
 black = "#1d3b53"
@@ -98,54 +141,194 @@ grey = "#7e8294"
 grey_dim = "#5a5e7a"
 
 
-[character]
-success_symbol = "[❯](purple)[❯](blue)"
-error_symbol = "[❯](yellow)[❯](red)"
-vicmd_symbol = "[❮](purple)[❮](cyan)"
+# [character]
+# success_symbol = "[❯](purple)[❯](blue)"
+# error_symbol = "[❯](yellow)[❯](red)"
+# vicmd_symbol = "[❮](purple)[❮](cyan)"
+#
+# [python]
+# format = '[(\($virtualenv\) )]($style)'
+# style = 'white'
+#
+# [directory]
+# style = "blue"
+# truncation_length = 1
+# truncation_symbol = ""
+# # fish_style_pwd_dir_length = 1
+#
+# # right prompt uses left space padding
+# [git_branch]
+# symbol = ""
+# format = ' [ $symbol $branch]($style)'
+# style = 'green'
+#
+# [git_status]
+# format = '( [\[$ahead_behind$stashed\]]($style))'
+# style = "cyan"
+# stashed = "≡"
+# ahead = "⇡${count}"
+# behind = "⇣${count}"
+#
+# [custom.git_status_dirty]
+# when = 'test -n "$(git status --porcelain 2>/dev/null)"'
+# symbol = "•"
+# style = "white"
+# format="[$symbol]($style)"
+# shell = ["sh"]
+#
+# [cmd_duration]
+# format = ' [$duration]($style)'
+#
+# [line_break]
+# disabled = true
+#
+# [status]
+# disabled = false
+# symbol = ' ✘'
+#
+# [time]
+# disabled = false
+# format = "[  $time]($style)"
+# time_format = "%R"
+# utc_time_offset = "local"
+# style = "italic dimmed white"
 
-[python]
-format = '[(\($virtualenv\) )]($style)'
-style = 'white'
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = " "
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+
+[username]
+#show_always = true
+#style_user = "bg:surface0 fg:text"
+#style_root = "bg:surface0 fg:text"
+#format = '[ $user ]($style)'
 
 [directory]
-style = "blue"
-truncation_length = 1
-truncation_symbol = ""
-# fish_style_pwd_dir_length = 1
+style = "sapphire"
+format = "[ $path ]($style)"
+#truncation_length = 4
+#truncation_symbol = "…/"
 
-# right prompt uses left space padding
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+
+[os]
+disabled = true
+#style = "bg:surface0 fg:text"
+
+[custom.giturl]
+# disabled = true
+description = "Display symbol for remote Git server"
+command = """
+GIT_REMOTE=$(command git ls-remote --get-url 2> /dev/null)
+if [[ "$GIT_REMOTE" =~ "github" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "gitlab" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "bitbucket" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "git" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+else
+    GIT_REMOTE_SYMBOL=" "
+fi
+echo "$GIT_REMOTE_SYMBOL "
+"""
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+format = "at $output"
+
 [git_branch]
-symbol = ""
-format = ' [ $symbol $branch]($style)'
-style = 'green'
+symbol = "[](black) "
+# format =  ' [$symbol$branch(:$remote_branch)]($style)[]'
+style = "fg:lavender bg:black"
+format =  '  on [$symbol$branch]($style)[](black)'
 
 [git_status]
-format = '( [\[$ahead_behind$stashed\]]($style))'
-style = "cyan"
-stashed = "≡"
-ahead = "⇡${count}"
-behind = "⇣${count}"
+format = ' [($all_status$ahead_behind )]($style)'
 
-[custom.git_status_dirty]
-when = 'test -n "$(git status --porcelain 2>/dev/null)"'
-symbol = "•"
-style = "white"
-format="[$symbol]($style)"
-shell = ["sh"]
+[nodejs]
+symbol = ""
+format = '[ $symbol( $version) ]($style)'
 
-[cmd_duration]
-format = ' [$duration]($style)'
+[c]
+symbol = " "
+format = '[[ $symbol( $version) ]]($style)'
 
-[line_break]
-disabled = true
+[rust]
+symbol = ""
+format = '[[ $symbol( $version) ]]($style)'
 
-[status]
-disabled = false
-symbol = ' ✘'
+[golang]
+symbol = ""
+format = '[ $symbol( $version) ]($style)'
+detect_files = ["go.mod"]
+
+[php]
+symbol = ""
+format = '[[ $symbol( $version) ]]($style)'
+
+[java]
+symbol = " "
+format = '[[ $symbol( $version) ]]($style)'
+
+[kotlin]
+symbol = ""
+
+format = '[[ $symbol( $version) ]]($style)'
+
+[haskell]
+symbol = ""
+
+format = '[[ $symbol( $version) ]]($style)'
+
+[python]
+symbol = ""
+
+#
+format = "[ $symbol( $version) ]($style)"
+# format = "via [$symbol($version)]($style) "
+
+[docker_context]
+symbol = ""
+format = '[ $symbol( $context) ]($style)'
+
 
 [time]
-disabled = false
-format = "[  $time]($style)"
+disabled = true
 time_format = "%R"
-utc_time_offset = "local"
-style = "italic dimmed white"
+style = "bg:peach"
+format = '[[  $time ](fg:mantle bg:foam)]($style)'
+
+[line_break]
+disabled = true 
+
+[character]
+disabled = false
+success_symbol = '[𝘹](bold fg:green)'
+error_symbol = '[𝘹](bold fg:red)'
+vimcmd_symbol = '[](bold fg:creen)'
+vimcmd_replace_one_symbol = '[](bold fg:purple)'
+vimcmd_replace_symbol = '[](bold fg:purple)'
+vimcmd_visual_symbol = '[](bold fg:lavender)'
