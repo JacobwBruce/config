@@ -21,7 +21,7 @@ $character
 
 right_format = """$all"""
 
-palette = "catppuccin_custom"
+palette = "nightfly"
 
 [palettes.catppuccin_custom]
 rosewater = "#f5e0dc"
@@ -53,7 +53,8 @@ crust = "#11111b"
 
 
 [palettes.nightfly]
-black = "#1d3b53"
+# black = "#1d3b53"
+black = "#15161e"
 blue = "#82aaff"
 cyan = "#7fdbca"
 # green = "#a9dc76"
@@ -75,6 +76,17 @@ white = '#eceff4'
 yellow = '#f0c674'
 
 # Define custom colors
+[palettes.old_world]
+black = '#161617'
+blue = '#92A2D5'
+cyan = '#85B5BA'
+green = '#90B99F'
+purple = '#ACA1CF'
+red = '#EA83A5'
+white = '#C9C7CD'
+yellow = '#F5A191'
+# yellow = '#E6B99D'
+
 [palettes.tokyo_night]
 black = '#15161e'
 blue = '#7aa2f7'
@@ -85,7 +97,23 @@ red = '#f7768e'
 white = '#a9b1d6'
 yellow = '#e0af68'
 
-
+[palettes.maple_dark]
+black   = '#333333'
+red     = '#edabab'
+green   = '#a4dfae'
+yellow  = '#eecfa0'
+blue    = '#8fc7ff'
+purple  = '#d2ccff'
+cyan    = '#a1e8e5'
+white   = '#f3f2f2'
+bright_black   = '#666666'
+bright_red     = '#ffc4c4'
+bright_green   = '#bdf8c7'
+bright_yellow  = '#ffe8b9'
+bright_blue    = '#a8e0ff'
+bright_purple  = '#ebe5ff'
+bright_cyan    = '#bafffe'
+bright_white   = '#ffffff'
 
 [palettes.catppuccin]
 rosewater = "#f5e0dc"
@@ -262,7 +290,7 @@ format = "at $output"
 [git_branch]
 symbol = "[](black) "
 # format =  ' [$symbol$branch(:$remote_branch)]($style)[]'
-style = "fg:lavender bg:black"
+style = "fg:purple bg:black"
 format =  '  on [$symbol$branch]($style)[](black)'
 
 [git_status]
@@ -278,7 +306,7 @@ format = '[[ $symbol( $version) ]]($style)'
 
 [rust]
 symbol = ""
-format = '[[ $symbol( $version) ]]($style)'
+format = '[ $symbol( $version) ]($style)'
 
 [golang]
 symbol = ""

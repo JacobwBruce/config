@@ -12,9 +12,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.o.termguicolors = true
+vim.o.linespace = 10
 
 require("key-maps")
 require("vim-options")
 require("lazy").setup("plugins")
 
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("vercel")
