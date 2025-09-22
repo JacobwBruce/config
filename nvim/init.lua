@@ -18,4 +18,4 @@ require("key-maps")
 require("vim-options")
 require("lazy").setup("plugins")
 
-vim.cmd.colorscheme("vercel")
+vim.cmd.colorscheme("tokyonight")

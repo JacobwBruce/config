@@ -21,7 +21,7 @@ $character
 
 right_format = """$all"""
 
-palette = "nightfly"
+palette = "tokyo_night"
 
 [palettes.catppuccin_custom]
 rosewater = "#f5e0dc"
@@ -50,6 +50,7 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
+black = "#15161e"
 
 
 [palettes.nightfly]
@@ -64,6 +65,16 @@ red = "#ff5874"
 white = "#e3e5e9"
 yellow = "#e3d18a"
 
+[palettes.vercel]
+black = "#15161e"
+blue = "#43AAF9"
+cyan = "#A7D1F5"
+green = "#62c073"
+purple = "#B267E6"
+red = "#E61F44"
+white = "#DCE3EA"
+yellow = "#E6DB74"
+
 # Define Nord colors
 [palettes.nord]
 black = '#3b4252'
@@ -74,18 +85,6 @@ purple = '#c895c7'
 red = '#d87c7d'
 white = '#eceff4'
 yellow = '#f0c674'
-
-# Define custom colors
-[palettes.old_world]
-black = '#161617'
-blue = '#92A2D5'
-cyan = '#85B5BA'
-green = '#90B99F'
-purple = '#ACA1CF'
-red = '#EA83A5'
-white = '#C9C7CD'
-yellow = '#F5A191'
-# yellow = '#E6B99D'
 
 [palettes.tokyo_night]
 black = '#15161e'

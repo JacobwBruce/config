@@ -1,29 +1,31 @@
-theme = Nocturnal Winter 
+# theme = Nocturnal Winter 
 # theme = Overnight Slumber
 # theme = catppuccin-mocha
+theme = "TokyoNight Night"
 # theme = Elegant
+# theme = snazzy
 background = #0D0D17
 
 
-# font-family = JetBrainsMonoNL Nerd Font Mono
+# font-family = JetBrainsMono Nerd Font Mono
 # font-family = Cascadia Code NF
 
-font-family = Maple Mono
+font-family = Maple Mono NF
 # font-family-bold = Maple Mono Bold
 # font-family-italic = Maple Mono Italic
 # font-family-bold-italic = Maple Mono Bold Italic
 
-font-feature = cv01, ss02, ss03
-# $
+font-feature=cv02
 
 # font-family = Monaspace Neon Var
 # font-feature=calt, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, liga
 
+# font-family=FiraCode Nerd Font Mono
 
 background-opacity = 0.85
 background-blur-radius = 20
 
-font-size = 15
+font-size = 16
 font-thicken = true
 adjust-cell-height = 25%
 
