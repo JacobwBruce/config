@@ -1,120 +1,154 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		lazy = false,
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		lazy = false,
-		opts = {
-			ensure_installed = {
-				"ts_ls",
-				"tailwindcss",
-				"emmet_ls",
-				"prismals",
-				"html",
-				"lua_ls",
-				"cssls",
-				"gopls",
-				"jdtls",
-				"pyright",
-			},
-			automatic_installation = true,
-			-- auto_install = true,
-		},
-	},
-	{
-		"neovim/nvim-lspconfig",
-		lazy = false,
-		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local util = require("lspconfig.util")
+  -- Mason (installs tooling)
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ui = {
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗",
+        },
+      },
+    },
+  },
 
-			local lspconfig = require("lspconfig")
+  -- Mason bridge for LSP servers (installs + auto-enables)
+  {
+    "williamboman/mason-lspconfig.nvim",
+    lazy = false,
+    opts = {
+      ensure_installed = {
+        "ts_ls",
+        "tailwindcss",
+        "emmet_ls",
+        "prismals",
+        "html",
+        "lua_ls",
+        "cssls",
+        "gopls",
+        "jdtls",
+        "pyright",
+      },
+      -- Neovim 0.11+: let mason-lspconfig autoload servers via vim.lsp.enable()
+      automatic_enable = true,
+    },
+    dependencies = {
+      { "williamboman/mason.nvim" },
+      "neovim/nvim-lspconfig", -- still provides the per-server defaults Neovim can merge with
+    },
+  },
 
-			local function organize_imports()
-				local params = {
-					command = "_typescript.organizeImports",
-					arguments = { vim.api.nvim_buf_get_name(0) },
-				}
-				vim.lsp.buf.execute_command(params)
-			end
+  -- Core LSP configuration (no require('lspconfig').*.setup here!)
+  {
+    "neovim/nvim-lspconfig",
+    lazy = false,
+    config = function()
+      -- Shared capabilities for all servers
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-				init_options = {
-					preferences = {
-						disableSuggestions = true,
-					},
-				},
-				commands = {
-					OrganizeImports = {
-						organize_imports,
-						desc = "Organize Imports",
-					},
-				},
-			})
-			lspconfig.tailwindcss.setup({
-				capabilities = capabilities,
-				cmd = { "tailwindcss-language-server", "--stdio" },
-				filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
-				root_dir = util.root_pattern("tailwind.config.js", "package.json", "postcss.config.js", ".git"),
-			})
+      -- Apply to every server via the "*" config
+      vim.lsp.config("*", {
+        capabilities = capabilities,
+      })
 
-			lspconfig["emmet_ls"].setup({
-				capabilities = capabilities,
-				filetypes = { "html", "css", "scss", "sass", "javascriptreact", "less", "typescriptreact", "svelte" },
-			})
+      -- Helper: TS organize imports (works as an LSP command callback)
+      local function organize_imports()
+        local params = {
+          command = "_typescript.organizeImports",
+          arguments = { vim.api.nvim_buf_get_name(0) },
+        }
+        vim.lsp.buf.execute_command(params)
+      end
 
-			lspconfig.prismals.setup({
-				capabilities = capabilities,
-				filetypes = { "prisma" },
-			})
-			lspconfig.html.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.cssls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-				settings = {
-					gopls = {
-						completeUnimported = true,
-						usePlaceholders = true,
-						analyses = {
-							unusedparams = true,
-						},
-					},
-				},
-			})
-			lspconfig.jdtls.setup({
-				capabilities = capabilities,
-			})
+      -- Per-server overrides (these MERGE with defaults from nvim-lspconfig)
+      -- TypeScript
+      vim.lsp.config("ts_ls", {
+        init_options = {
+          preferences = {
+            disableSuggestions = true,
+          },
+        },
+        commands = {
+          OrganizeImports = {
+            organize_imports,
+            description = "Organize Imports",
+          },
+        },
+      })
 
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-				filetypes = { "python" },
-			})
+      -- Tailwind CSS
+      vim.lsp.config("tailwindcss", {
+        cmd = { "tailwindcss-language-server", "--stdio" },
+        filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        -- Neovim will also consider root markers when enabling; this is a light override.
+        root_markers = { "tailwind.config.js", "package.json", "postcss.config.js", ".git" },
+      })
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {
-				desc = "Show hover",
-			})
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {
-				desc = "Go to definition",
-			})
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {
-				desc = "Code action",
-			})
-			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {
-				desc = "Rename variable",
-			})
-		end,
-	},
+      -- Emmet
+      vim.lsp.config("emmet_ls", {
+        filetypes = { "html", "css", "scss", "sass", "javascriptreact", "less", "typescriptreact", "svelte" },
+      })
+
+      -- Prisma
+      vim.lsp.config("prismals", {
+        filetypes = { "prisma" },
+      })
+
+      -- HTML / Lua / CSS
+      vim.lsp.config("html", {})
+      vim.lsp.config("lua_ls", {})
+      vim.lsp.config("cssls", {})
+
+      -- Go
+      vim.lsp.config("gopls", {
+        settings = {
+          gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = { unusedparams = true },
+          },
+        },
+      })
+
+      -- Java
+      vim.lsp.config("jdtls", {})
+
+      -- Python
+      vim.lsp.config("pyright", {
+        filetypes = { "python" },
+      })
+
+      -- Keymaps (buffer-local on LspAttach; lets Neovim’s sane defaults stand)
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("my.lsp.keys", {}),
+        callback = function(ev)
+          local opts = { buffer = ev.buf, silent = true }
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "LSP: Hover" }))
+          vim.keymap.set(
+            "n",
+            "<leader>gd",
+            vim.lsp.buf.definition,
+            vim.tbl_extend("force", opts, { desc = "LSP: Go to definition" })
+          )
+          vim.keymap.set(
+            "n",
+            "<leader>ca",
+            vim.lsp.buf.code_action,
+            vim.tbl_extend("force", opts, { desc = "LSP: Code action" })
+          )
+          vim.keymap.set(
+            "n",
+            "<leader>rn",
+            vim.lsp.buf.rename,
+            vim.tbl_extend("force", opts, { desc = "LSP: Rename symbol" })
+          )
+        end,
+      })
+
+      -- OPTIONAL: If you prefer to explicitly enable (instead of mason-lspconfig’s automatic_enable),
+      -- uncomment below. Neovim 0.11+ will auto-start these based on filetypes/root.
+      -- vim.lsp.enable({ "ts_ls","tailwindcss","emmet_ls","prismals","html","lua_ls","cssls","gopls","jdtls","pyright" })
+    end,
+  },
 }
