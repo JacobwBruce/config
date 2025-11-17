@@ -9,19 +9,21 @@ add_newline = false
 # right_format = """$status$cmd_duration$git_branch${custom.git_status_dirty}$git_status"""
 
 format = """
- ➜\
+[╭](fg:separator)\
+$status\
 $directory\
 ${custom.giturl}\
 $git_branch\
 $git_state\
 $git_status\
 $line_break\
+[╰](fg:separator)\
 $character
 """
 
 right_format = """$all"""
 
-palette = "tokyo_night"
+palette = "nightfly"
 
 [palettes.catppuccin_custom]
 rosewater = "#f5e0dc"
@@ -348,14 +350,10 @@ time_format = "%R"
 style = "bg:peach"
 format = '[[  $time ](fg:mantle bg:foam)]($style)'
 
-[line_break]
-disabled = true 
-
 [character]
-disabled = false
-success_symbol = '[𝘹](bold fg:green)'
-error_symbol = '[𝘹](bold fg:red)'
-vimcmd_symbol = '[](bold fg:creen)'
+success_symbol = "[❯](fg:green)"
+error_symbol = "[❯](fg:red)"
+vimcmd_symbol = '[](bold fg:green)'
 vimcmd_replace_one_symbol = '[](bold fg:purple)'
 vimcmd_replace_symbol = '[](bold fg:purple)'
 vimcmd_visual_symbol = '[](bold fg:lavender)'
