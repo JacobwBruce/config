@@ -1,7 +1,8 @@
 # theme = Nocturnal Winter 
-# theme = Overnight Slumber
-# theme = catppuccin-mocha
-theme = "TokyoNight Night"
+theme = "Material Ocean"
+# theme = "TokyoNight Night"
+# theme = "Material Design Colors"
+# theme = "Night Owl"
 # theme = snazzy
 background = #0D0D17
 
@@ -22,16 +23,15 @@ font-feature=cv02
 # font-family=FiraCode Nerd Font Mono
 
 background-opacity = 0.85
-background-blur-radius = 20
+background-blur-radius = 60
 
 font-size = 16
 font-thicken = true
+font-style = SemiBold
 adjust-cell-height = 25%
 
+custom-shader = shaders/cursor_warp.glsl
 
-cursor-style = block
-cursor-style-blink = false
-shell-integration-features = no-cursor 
 
 macos-titlebar-style = hidden
 # macos-titlebar-proxy-icon = hidden
@@ -42,7 +42,6 @@ window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
 
-# By default Reload config with shft + cmd + ,
 keybind = super+r=reload_config
 cursor-style = block
 cursor-style-blink = false
