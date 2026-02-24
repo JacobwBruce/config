@@ -1,4 +1,5 @@
 return {
+	-- 		-- ["@keyword.import"] = { fg = colors.white },
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -121,7 +122,7 @@ return {
 			-- local border = "#547998"
 			--
 			require("tokyonight").setup({
-				style = "night",
+				style = "storm",
 				transparent = transparent,
 
 				styles = {
@@ -220,6 +221,87 @@ return {
 			require("vesper").setup({
 				transparent = true,
 			})
+		end,
+	},
+	{
+		"sponkurtus2/poimandres.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("poimandres").setup({
+				bold_vert_split = true, -- use bold vertical separators
+				disable_background = true, -- disable background
+				disable_float_background = true,
+			})
+		end,
+	},
+	{
+		"marko-cerovac/material.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			local colors = require("material.colors")
+			require("material").setup({
+				disable = {
+					background = true,
+				},
+				lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
+				styles = {
+					comments = { --[[ italic = true ]]
+						italic = true,
+					},
+					strings = { --[[ bold = true ]]
+						-- bold = true,
+					},
+					keywords = { --[[ underline = true ]]
+						-- bold = true,
+						italic = true,
+					},
+					functions = { --[[ bold = true, undercurl = true ]]
+						-- bold = true,
+						-- italic = true,
+					},
+				},
+				custom_highlights = {
+					Boolean = { fg = colors.main.cyan },
+					Cursor = { bg = colors.main.blue },
+					CursorLineNr = { fg = colors.main.blue },
+					["@keyword"] = { fg = colors.main.purple },
+					["@keyword.function"] = { fg = colors.main.purple },
+					["@keyword.coroutine"] = { fg = colors.main.purple },
+					["@keyword.operator"] = { fg = colors.main.cyan },
+					["@keyword.return"] = { fg = colors.main.cyan },
+					["@keyword.export"] = { fg = colors.main.cyan },
+					["@keyword.conditional"] = { fg = colors.main.cyan },
+					["@keyword.exception"] = { fg = colors.main.cyan },
+					["@property"] = { fg = colors.main.white },
+					["@variable"] = { fg = colors.main.white },
+					["@variable.member"] = { fg = colors.main.yellow },
+					["@constant"] = { fg = colors.main.white },
+					["@object.property"] = { fg = colors.main.yellow },
+					["@include.identifier"] = { fg = colors.main.white },
+					["@type"] = { fg = colors.main.yellow },
+					["@tag.builtin"] = { fg = colors.main.red },
+					["@tag.component"] = { fg = colors.main.yellow },
+					["@lsp.typemod.variable.defaultLibrary"] = { fg = colors.main.white },
+					["@lsp.type.interface"] = { fg = colors.main.yellow },
+				},
+
+				-- custom_highlights = function(colors)
+				-- 	return {
+				-- 		["@keyword"] = { fg = colors.red },
+				-- 		-- ["@keyword.import"] = { fg = colors.white },
+				--
+				-- 		-- Function-specific keywords (like "function")
+				-- 		-- ["@keyword.function"] = { fg = colors.red },
+				--
+				-- 		-- Variable declaration keywords (let, const, var)
+				-- 		-- ["@keyword.var"] = { fg = colors.red },
+				-- 	}
+				-- end,
+			})
+			--Lua:
+			vim.g.material_style = "deep ocean"
 		end,
 	},
 }

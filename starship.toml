@@ -16,14 +16,30 @@ ${custom.giturl}\
 $git_branch\
 $git_state\
 $git_status\
+$fill\
+$all\
 $line_break\
 [╰](fg:separator)\
 $character
 """
 
-right_format = """$all"""
 
-palette = "nightfly"
+# right_format = """
+# $all\
+# """
+
+palette = "vira"
+
+[palettes.night_owl]
+black  = '#011627'
+blue   = '#82aaff'
+cyan   = '#21c7a8'
+green  = '#22da6e'
+purple = '#c792ea'
+red    = '#ef5350'
+white  = '#d6deeb'
+yellow = '#ecc48d'
+
 
 [palettes.catppuccin_custom]
 rosewater = "#f5e0dc"
@@ -66,6 +82,18 @@ purple = "#c792ea"
 red = "#ff5874"
 white = "#e3e5e9"
 yellow = "#e3d18a"
+
+
+[palettes.poimandres]
+# black = "#1d3b53"
+black = "#15161e"
+blue = "#89DDFF"
+cyan = "#7fdbca"
+green = "#5DE4C7"
+purple = "#D0679D"
+red = "#D0679D"
+white = "#E4F0FB"
+yellow = "#FFFAC2"
 
 [palettes.vercel]
 black = "#15161e"
@@ -168,6 +196,26 @@ blue = "#6dcae8"
 purple = "#bb97ee"
 grey = "#7e8294"
 grey_dim = "#5a5e7a"
+
+[palettes.rose_pine]
+black  = '#191724'
+blue   = '#31748f'
+cyan   = '#9ccfd8'
+green  = '#56949f'
+purple = '#c4a7e7'
+red    = '#eb6f92'
+white  = '#e0def4'
+yellow = '#f6c177'
+
+[palettes.vira]
+black  = '#0f111a'
+blue   = '#6aa6ff'
+cyan   = '#56b6c2'
+green  = '#7bd88f'
+purple = '#c792ea'
+red    = '#ff6b6b'
+white  = '#dcdfe4'
+yellow = '#ffd866'
 
 
 # [character]
@@ -291,14 +339,15 @@ format = "at $output"
 [git_branch]
 symbol = "[](black) "
 # format =  ' [$symbol$branch(:$remote_branch)]($style)[]'
-style = "fg:purple bg:black"
+style = "fg:yellow bg:black"
 format =  '  on [$symbol$branch]($style)[](black)'
 
 [git_status]
 format = ' [($all_status$ahead_behind )]($style)'
 
 [nodejs]
-symbol = ""
+# symbol = ""
+symbol = ''
 format = '[ $symbol( $version) ]($style)'
 
 [c]
@@ -343,6 +392,10 @@ format = "[ $symbol( $version) ]($style)"
 symbol = ""
 format = '[ $symbol( $context) ]($style)'
 
+
+
+[fill]
+symbol = " "
 
 [time]
 disabled = true
