@@ -1,7 +1,7 @@
 # theme = Nocturnal Winter 
-theme = "Material Ocean"
+# theme = "Material Ocean"
 # theme = "TokyoNight Night"
-# theme = "Material Design Colors"
+theme = "Material Design Colors"
 # theme = "Night Owl"
 # theme = snazzy
 background = #0D0D17
@@ -11,11 +11,13 @@ background = #0D0D17
 # font-family = Cascadia Code NF
 
 font-family = Maple Mono NF
+font-codepoint-map = U+E718=JetBrainsMono Nerd Font Mono
 # font-family-bold = Maple Mono Bold
 # font-family-italic = Maple Mono Italic
 # font-family-bold-italic = Maple Mono Bold Italic
 
-font-feature=cv02
+font-feature=cv02, cv31
+
 
 # font-family = Monaspace Neon Var
 # font-feature=calt, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, liga
@@ -26,11 +28,11 @@ background-opacity = 0.85
 background-blur-radius = 60
 
 font-size = 16
-font-thicken = true
+# font-thicken = true
 font-style = SemiBold
 adjust-cell-height = 25%
 
-custom-shader = shaders/cursor_warp.glsl
+custom-shader = shaders/cursor_sweep.glsl
 
 
 macos-titlebar-style = hidden
