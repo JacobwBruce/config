@@ -28,7 +28,7 @@ $character
 # $all\
 # """
 
-palette = "vira"
+palette = "teide_darker"
 
 [palettes.night_owl]
 black  = '#011627'
@@ -115,6 +115,16 @@ purple = '#c895c7'
 red = '#d87c7d'
 white = '#eceff4'
 yellow = '#f0c674'
+
+[palettes.teide_darker]
+black = '#12161a'
+red = '#F97791'
+green = '#38FFA5'
+yellow = '#FFA064'
+blue = '#5CCEFF'
+purple = '#B2A3FF'
+cyan = '#0AE7FF'
+white = '#E7EAEE'
 
 [palettes.tokyo_night]
 black = '#15161e'
@@ -339,7 +349,7 @@ format = "at $output"
 [git_branch]
 symbol = "[](black) "
 # format =  ' [$symbol$branch(:$remote_branch)]($style)[]'
-style = "fg:yellow bg:black"
+style = "fg:purple bg:black"
 format =  '  on [$symbol$branch]($style)[](black)'
 
 [git_status]

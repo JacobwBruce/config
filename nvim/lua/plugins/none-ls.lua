@@ -4,20 +4,25 @@ return {
 		local null_ls = require("null-ls")
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+		local sources = {
+			null_ls.builtins.formatting.stylua,
+			-- null_ls.builtins.diagnostics.eslint_d,
+			null_ls.builtins.formatting.prettierd,
+			null_ls.builtins.formatting.gofumpt,
+			null_ls.builtins.formatting.goimports_reviser,
+			null_ls.builtins.diagnostics.rubocop,
+			null_ls.builtins.formatting.rubocop,
+			null_ls.builtins.diagnostics.mypy,
+			null_ls.builtins.diagnostics.pylint,
+			null_ls.builtins.formatting.black,
+		}
+
+		if vim.fn.executable("golines") == 1 then
+			table.insert(sources, 6, null_ls.builtins.formatting.golines)
+		end
+
 		null_ls.setup({
-			sources = {
-				null_ls.builtins.formatting.stylua,
-				-- null_ls.builtins.diagnostics.eslint_d,
-				null_ls.builtins.formatting.prettierd,
-				null_ls.builtins.formatting.gofumpt,
-				null_ls.builtins.formatting.goimports_reviser,
-				null_ls.builtins.formatting.golines,
-				null_ls.builtins.diagnostics.rubocop,
-				null_ls.builtins.formatting.rubocop,
-				null_ls.builtins.diagnostics.mypy,
-				null_ls.builtins.diagnostics.pylint,
-				null_ls.builtins.formatting.black,
-			},
+			sources = sources,
 			on_attach = function(client, bufnr)
 				if client:supports_method("textDocument/formatting") then
 					vim.api.nvim_clear_autocmds({

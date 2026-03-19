@@ -107,6 +107,18 @@ return {
 		end,
 	},
 	{
+		"serhez/teide.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			transparent = true,
+			style = "darker",
+			on_highlights = function(hl, c)
+				hl.LspInlayHint = { fg = c.comment, bg = "NONE" }
+			end,
+		},
+	},
+	{
 		"folke/tokyonight.nvim",
 		name = "folkeTokyonight",
 		config = function()
@@ -145,6 +157,9 @@ return {
 					--     colors.fg_float = fg
 					--     colors.fg_gutter = fg_gutter
 					--     colors.fg_sidebar = fg_dark
+				end,
+				on_highlights = function(hl, c)
+					hl.LspInlayHint = { fg = c.comment, bg = "NONE" }
 				end,
 			})
 			-- vim.cmd("colorscheme tokyonight")
@@ -302,6 +317,14 @@ return {
 			})
 			--Lua:
 			vim.g.material_style = "deep ocean"
+		end,
+	},
+	{
+		"Mofiqul/dracula.nvim",
+		config = function()
+			require("dracula").setup({
+				transparent_bg = true,
+			})
 		end,
 	},
 }
