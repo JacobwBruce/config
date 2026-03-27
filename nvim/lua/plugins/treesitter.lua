@@ -10,6 +10,7 @@ return {
 				"vim",
 				"vimdoc",
 				"typescript",
+				"tsx",
 				"javascript",
 				"html",
 				"css",
