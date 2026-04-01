@@ -1,26 +1,22 @@
 return {
-  {
-    "rust-lang/rust.vim",
-    ft = "rust",
-    init = function()
-      vim.g.rustfmt_autosave = 1
-    end,
-  },
-  {
-    "simrat39/rust-tools.nvim",
-    ft = "rust",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-    },
-    config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      require("rust-tools").setup({
-        server = {
-          capabilities = capabilities,
-        },
-      })
-    end,
-  },
+	{
+		"mrcjkb/rustaceanvim",
+		ft = "rust",
+		version = "^6",
+		init = function()
+			vim.g.rustaceanvim = {
+				server = {
+					default_settings = {
+						["rust-analyzer"] = {
+							checkOnSave = {
+								command = "clippy",
+							},
+						},
+					},
+				},
+			}
+		end,
+	},
   {
     "saecki/crates.nvim",
     ft = { "rust", "toml" },

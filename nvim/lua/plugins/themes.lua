@@ -3,6 +3,7 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		lazy = true,
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
@@ -70,6 +71,7 @@ return {
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
+		lazy = true,
 		config = function()
 			require("rose-pine").setup({
 				variant = "moon",
@@ -84,7 +86,7 @@ return {
 	{
 		"bluz71/vim-nightfly-colors",
 		name = "nightfly",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		opts = {},
 		config = function()
@@ -110,17 +112,36 @@ return {
 		"serhez/teide.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = {
-			transparent = true,
-			style = "darker",
-			on_highlights = function(hl, c)
-				hl.LspInlayHint = { fg = c.comment, bg = "NONE" }
-			end,
-		},
+		config = function()
+			local transparent = true
+			local bg = "#011628"
+			local bg_dark = "#011424"
+
+			require("teide").setup({
+				style = "darker",
+				transparent = transparent,
+
+				styles = {
+					sidebars = transparent and "transparent" or "dark",
+					floats = transparent and "transparent" or "dark",
+				},
+				on_colors = function(colors)
+					colors.bg = transparent and colors.none or bg
+					colors.bg_dark = transparent and colors.none or bg_dark
+					colors.bg_float = transparent and colors.none or bg_dark
+					colors.bg_sidebar = transparent and colors.none or bg_dark
+					colors.bg_statusline = transparent and colors.none or bg_dark
+				end,
+				on_highlights = function(hl, c)
+					hl.LspInlayHint = { fg = c.comment, bg = "NONE" }
+				end,
+			})
+		end,
 	},
 	{
 		"folke/tokyonight.nvim",
 		name = "folkeTokyonight",
+		lazy = true,
 		config = function()
 			local transparent = true
 			local bg = "#011628"
@@ -181,6 +202,7 @@ return {
 	},
 	{
 		"sainnhe/sonokai",
+		lazy = true,
 		priority = 1000,
 		config = function()
 			vim.g.sonokai_transparent_background = "1"
@@ -190,7 +212,7 @@ return {
 	},
 	{
 		"webhooked/norrsken.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		config = function()
 			require("norrsken").setup({
@@ -200,20 +222,18 @@ return {
 		end,
 	},
 	{
-		{
-			"oxfist/night-owl.nvim",
-			lazy = false, -- make sure we load this during startup if it is your main colorscheme
-			priority = 1000, -- make sure to load this before all the other start plugins
-			config = function()
-				require("night-owl").setup({
-					transparent_background = true,
-				})
-			end,
-		},
+		"oxfist/night-owl.nvim",
+		lazy = true,
+		priority = 1000,
+		config = function()
+			require("night-owl").setup({
+				transparent_background = true,
+			})
+		end,
 	},
 	{
 		"tiesen243/vercel.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		config = function()
 			require("vercel").setup({
@@ -232,6 +252,7 @@ return {
 	},
 	{
 		"datsfilipe/vesper.nvim",
+		lazy = true,
 		config = function()
 			require("vesper").setup({
 				transparent = true,
@@ -240,7 +261,7 @@ return {
 	},
 	{
 		"sponkurtus2/poimandres.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		config = function()
 			require("poimandres").setup({
@@ -252,7 +273,7 @@ return {
 	},
 	{
 		"marko-cerovac/material.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		config = function()
 			local colors = require("material.colors")
@@ -321,6 +342,7 @@ return {
 	},
 	{
 		"Mofiqul/dracula.nvim",
+		lazy = true,
 		config = function()
 			require("dracula").setup({
 				transparent_bg = true,

@@ -2,13 +2,13 @@ return {
 	{
 		"hrsh7th/cmp-nvim-lsp",
 	},
-	-- {
-	-- 	"L3MON4D3/LuaSnip",
-	-- 	dependencies = {
-	-- 		"saadparwaiz1/cmp_luasnip",
-	-- 		"rafamadriz/friendly-snippets",
-	-- 	},
-	-- },
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = {
+			"saadparwaiz1/cmp_luasnip",
+			"rafamadriz/friendly-snippets",
+		},
+	},
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
@@ -21,24 +21,25 @@ return {
 		config = function()
 			local cmp = require("cmp")
 			local lspkind = require("lspkind")
+			local luasnip = require("luasnip")
 
-			-- require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_vscode").lazy_load()
 
 			local borders = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 			cmp.setup({
-				-- snippet = {
-				--   expand = function(args)
-				--     require("luasnip").lsp_expand(args.body)
-				--   end,
-				-- },
+				snippet = {
+					expand = function(args)
+						luasnip.lsp_expand(args.body)
+					end,
+				},
 				window = {
 					completion = cmp.config.window.bordered({
 						border = borders,
 						winhighlight = "Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None",
 						zindex = 1001,
 						scrollbar = true,
-						col_offset = -3, -- shift the text a bit left/right
-						side_padding = 1, -- extra padding around entries
+						col_offset = -3,
+						side_padding = 1,
 					}),
 					documentation = cmp.config.window.bordered({
 						border = borders,
@@ -51,11 +52,29 @@ return {
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<CR>"] = cmp.mapping.confirm({ select = false }),
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						elseif luasnip.expand_or_locally_jumpable() then
+							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif luasnip.locally_jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					-- { name = "luasnip" }, -- For luasnip users.
+					{ name = "luasnip" },
 					{ name = "crates" },
 					{ name = "emoji" },
 				}, {
@@ -70,7 +89,7 @@ return {
 					end,
 				},
 			})
-			-- `/` cmdline setup.
+
 			cmp.setup.cmdline("/", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
@@ -78,7 +97,6 @@ return {
 				},
 			})
 
-			-- `:` cmdline setup.
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
@@ -93,7 +111,6 @@ return {
 				}),
 			})
 
-			-- dadbod UI
 			cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
 				sources = {
 					{ name = "vim-dadbod-completion" },

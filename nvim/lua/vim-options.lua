@@ -21,5 +21,18 @@ opt.smartcase = true  -- if you include mixed case in your search, assumes you w
 
 opt.cursorline = true
 opt.cursorlineopt = "number"
+opt.signcolumn = "yes"
+
+opt.scrolloff = 8
+opt.sidescrolloff = 8
+
+opt.splitbelow = true
+opt.splitright = true
+
+opt.updatetime = 250
+opt.undofile = true
+opt.wrap = false
+
+opt.clipboard = "unnamedplus"
 
 opt.termguicolors = true

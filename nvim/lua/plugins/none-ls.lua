@@ -3,23 +3,38 @@ return {
 	config = function()
 		local null_ls = require("null-ls")
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+		local sources = {}
 
-		local sources = {
-			null_ls.builtins.formatting.stylua,
-			-- null_ls.builtins.diagnostics.eslint_d,
-			null_ls.builtins.formatting.prettierd,
-			null_ls.builtins.formatting.gofumpt,
-			null_ls.builtins.formatting.goimports_reviser,
-			null_ls.builtins.diagnostics.rubocop,
-			null_ls.builtins.formatting.rubocop,
-			null_ls.builtins.diagnostics.mypy,
-			null_ls.builtins.diagnostics.pylint,
-			null_ls.builtins.formatting.black,
-		}
-
-		if vim.fn.executable("golines") == 1 then
-			table.insert(sources, 6, null_ls.builtins.formatting.golines)
+		local function add_if(exe, source)
+			if vim.fn.executable(exe) == 1 then
+				table.insert(sources, source)
+			end
 		end
+
+		local function format_with_null_ls(bufnr)
+			vim.lsp.buf.format({
+				bufnr = bufnr,
+				async = false,
+				filter = function(format_client)
+					return format_client.name == "null-ls"
+				end,
+			})
+		end
+
+		add_if("stylua", null_ls.builtins.formatting.stylua)
+		if vim.fn.executable("prettierd") == 1 then
+			table.insert(sources, null_ls.builtins.formatting.prettierd)
+		elseif vim.fn.executable("prettier") == 1 then
+			table.insert(sources, null_ls.builtins.formatting.prettier)
+		end
+		add_if("gofumpt", null_ls.builtins.formatting.gofumpt)
+		add_if("goimports-reviser", null_ls.builtins.formatting.goimports_reviser)
+		add_if("golines", null_ls.builtins.formatting.golines)
+		add_if("rubocop", null_ls.builtins.diagnostics.rubocop)
+		add_if("rubocop", null_ls.builtins.formatting.rubocop)
+		add_if("mypy", null_ls.builtins.diagnostics.mypy)
+		add_if("pylint", null_ls.builtins.diagnostics.pylint)
+		add_if("black", null_ls.builtins.formatting.black)
 
 		null_ls.setup({
 			sources = sources,
@@ -33,14 +48,16 @@ return {
 						group = augroup,
 						buffer = bufnr,
 						callback = function()
-							vim.lsp.buf.format({ bufnr = bufnr })
+							format_with_null_ls(bufnr)
 						end,
 					})
 				end
 			end,
 		})
 
-		vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {
+		vim.keymap.set("n", "<leader>gf", function()
+			format_with_null_ls(vim.api.nvim_get_current_buf())
+		end, {
 			desc = "Format current buffer",
 		})
 	end,
