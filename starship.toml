@@ -28,7 +28,7 @@ $character
 # $all\
 # """
 
-palette = "teide_darker"
+palette = "meowsoot"
 
 [palettes.night_owl]
 black  = '#011627'
@@ -125,6 +125,29 @@ blue = '#5CCEFF'
 purple = '#B2A3FF'
 cyan = '#0AE7FF'
 white = '#E7EAEE'
+
+[palettes.meowsoot]
+black = '#171616'
+red = '#e99696'
+green = '#98cdaa'
+yellow = '#dfd286'
+blue = '#96bddf'
+purple = '#eaa4c9'
+cyan = '#96d8e3'
+white = '#e2e0df'
+bright_black = '#454240'
+bright_red = '#f0b7b7'
+bright_green = '#badec6'
+bright_yellow = '#eee7c4'
+bright_blue = '#b5d0e8'
+bright_purple = '#eec4d9'
+bright_cyan = '#c4e7ee'
+bright_white = '#e2e0df'
+separator = '#454240'
+lavender = '#eec4d9'
+peach = '#e99696'
+mantle = '#171616'
+foam = '#353331'
 
 [palettes.tokyo_night]
 black = '#15161e'
@@ -229,10 +252,16 @@ yellow = '#ffd866'
 
 
 # [character]
+# disabled = false
+# success_symbol = "[ ](bold fg:green)"
+# error_symbol = "[✘ ](bold fg:red)"
+# vimcmd_symbol = "[: ](bold fg:yellow)"
+
+# [character]
 # success_symbol = "[❯](purple)[❯](blue)"
 # error_symbol = "[❯](yellow)[❯](red)"
 # vicmd_symbol = "[❮](purple)[❮](cyan)"
-#
+
 # [python]
 # format = '[(\($virtualenv\) )]($style)'
 # style = 'white'

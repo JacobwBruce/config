@@ -32,7 +32,9 @@ opt.splitright = true
 opt.updatetime = 250
 opt.undofile = true
 opt.wrap = false
+opt.autoindent = true
+opt.smartindent = true
 
-opt.clipboard = "unnamedplus"
+-- opt.clipboard = "unnamedplus"
 
 opt.termguicolors = true

@@ -349,4 +349,16 @@ return {
 			})
 		end,
 	},
+	{
+		"marekh19/meowsoot.nvim",
+		lazy = false,
+		config = function()
+			require("meowsoot").setup({
+				transparent = true,
+				on_highlights = function(hl, c)
+					hl.LspInlayHint = { fg = c.comment, bg = "NONE" }
+				end,
+			})
+		end,
+	},
 }
