@@ -4,25 +4,32 @@ return {
 	config = function()
 		local config = {
 			options = {
-				component_separators = " ",
-				section_separators = { left = "", right = "" },
 				theme = "auto",
+				component_separators = "",
+				section_separators = "",
 			},
 			sections = {
-				lualine_a = { "mode" },
+				lualine_a = {
+					{
+						"mode",
+						left_padding = 0,
+						right_padding = 0,
+						separator = { left = "", right = "" },
+					},
+				},
 				lualine_b = {},
-				lualine_y = {},
-				lualine_z = {},
 				lualine_c = {},
 				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
 			},
 			inactive_sections = {
 				lualine_a = {},
 				lualine_b = {},
-				lualine_y = {},
-				lualine_z = {},
 				lualine_c = {},
 				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
 			},
 		}
 
@@ -35,22 +42,37 @@ return {
 		end
 
 		insert_left({ "branch", icon = "" })
-		insert_left({ "diff", symbols = { added = " ", modified = " ", removed = " " } })
+
+		insert_left({
+			"diff",
+			symbols = {
+				added = " ",
+				modified = " ",
+				removed = " ",
+			},
+		})
+
 		insert_left({
 			"diagnostics",
 			sources = { "nvim_diagnostic" },
-			symbols = { error = " ", warn = " ", info = " " },
+			symbols = {
+				error = " ",
+				warn = " ",
+				info = " ",
+			},
 		})
-		insert_left({
-			function()
-				return "%="
-			end,
-		})
-		insert_right({ "location" })
+
+		insert_left(function()
+			return "%="
+		end)
+
+		-- insert_right({ "location" })
+
 		insert_right({
 			require("real-icons.integrations.lualine").component,
 			padding = { left = 1, right = 0 },
 		})
+
 		insert_right({
 			"filetype",
 			icons_enabled = false,
