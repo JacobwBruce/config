@@ -7,7 +7,7 @@ return {
 		packs = {
 			flow = {
 				type = "vscode",
-				path = vim.fn.expand("~/.vscode/extensions/thang-nm.flow-icons-2.0.3"),
+				path = vim.fn.expand("~/.vscode/extensions/thang-nm.flow-icons-2.0.5"),
 				theme = "flow-deep",
 				license = "personal",
 			},

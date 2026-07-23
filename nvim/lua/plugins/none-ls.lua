@@ -21,7 +21,18 @@ return {
 			})
 		end
 
-		add_if("stylua", null_ls.builtins.formatting.stylua)
+		local stylua = vim.fn.stdpath("data") .. "/mason/packages/stylua/stylua"
+		if vim.fn.executable("stylua") == 1 then
+			table.insert(sources, null_ls.builtins.formatting.stylua)
+		elseif vim.fn.executable(stylua) == 1 then
+			table.insert(
+				sources,
+				null_ls.builtins.formatting.stylua.with({
+					command = stylua,
+				})
+			)
+		end
+
 		if vim.fn.executable("prettierd") == 1 then
 			table.insert(sources, null_ls.builtins.formatting.prettierd)
 		elseif vim.fn.executable("prettier") == 1 then

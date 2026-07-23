@@ -45,6 +45,7 @@ return {
 
 		insert_left({
 			"diff",
+			color = { bg = "NONE" },
 			symbols = {
 				added = " ",
 				modified = " ",
@@ -73,11 +74,11 @@ return {
 			padding = { left = 1, right = 0 },
 		})
 
-		insert_right({
-			"filetype",
-			icons_enabled = false,
-			padding = { left = 0, right = 1 },
-		})
+		-- insert_right({
+		-- 	"filetype",
+		-- 	icons_enabled = false,
+		-- 	padding = { left = 0, right = 1 },
+		-- })
 
 		require("lualine").setup(config)
 	end,

@@ -25,7 +25,7 @@ require("lazy").setup({
 	},
 })
 
-vim.cmd.colorscheme("meowsoot")
+vim.cmd.colorscheme("dim-night")
 
 local function clear_inlay_hint_bg()
 	local fg = vim.api.nvim_get_hl(0, { name = "Comment", link = true }).fg
@@ -69,37 +69,22 @@ if vim.tbl_contains(supportedThemes, vim.g.colors_name) then
 	clear_inlay_hint_bg()
 end
 
--- place this after `require("lualine").setup(config)` in your lualine config
 local function make_lualine_transparent()
-	local none = { bg = "NONE" }
+	local names = vim.fn.getcompletion("lualine", "highlight")
 
-	local modes = { "normal", "insert", "visual", "replace", "command", "inactive" }
-	local sections = { "b", "c", "x", "y", "z" }
-
-	-- make all non-mode sections transparent
-	for _, mode in ipairs(modes) do
-		for _, sec in ipairs(sections) do
-			local group = ("lualine_%s_%s"):format(sec, mode)
-			pcall(vim.api.nvim_set_hl, 0, group, none)
+	for _, name in ipairs(names) do
+		-- Keep the mode section's colors
+		if not name:match("^lualine_a_") then
+			local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = name })
+			if ok then
+				hl.bg = "NONE"
+				pcall(vim.api.nvim_set_hl, 0, name, hl)
+			end
 		end
 	end
 
-	-- make inactive mode section transparent too
-	pcall(vim.api.nvim_set_hl, 0, "lualine_a_inactive", none)
-
-	-- clear common statusline groups
-	pcall(vim.api.nvim_set_hl, 0, "StatusLine", none)
-	pcall(vim.api.nvim_set_hl, 0, "StatusLineNC", none)
+	vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
+	vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
 end
 
--- call it once immediately (use vim.schedule to ensure it runs after setup/render)
-vim.schedule(function()
-	make_lualine_transparent()
-end)
-
--- re-apply after any colorscheme change
-vim.api.nvim_create_autocmd("ColorScheme", {
-	callback = function()
-		make_lualine_transparent()
-	end,
-})
+vim.schedule(make_lualine_transparent)

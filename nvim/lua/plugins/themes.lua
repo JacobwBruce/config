@@ -155,7 +155,7 @@ return {
 			-- local border = "#547998"
 			--
 			require("tokyonight").setup({
-				style = "storm",
+				style = "moon",
 				transparent = transparent,
 
 				styles = {
@@ -354,6 +354,19 @@ return {
 		lazy = false,
 		config = function()
 			require("meowsoot").setup({
+				transparent = true,
+				on_highlights = function(hl, c)
+					hl.LspInlayHint = { fg = c.comment, bg = "NONE" }
+				end,
+			})
+		end,
+	},
+	{
+		"MartianGreed/dim-night.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("dim-night").setup({
 				transparent = true,
 				on_highlights = function(hl, c)
 					hl.LspInlayHint = { fg = c.comment, bg = "NONE" }
