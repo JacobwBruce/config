@@ -1,30 +1,38 @@
 macos-icon=custom
-macos-custom-icon=~/Documents/icons/ghostty_7.icns
+macos-custom-icon=~/Documents/icons/ghostty_8.icns
 
 # theme = "Material Design Colors"
 # theme = "Ayu Mirage"
-# theme = "TokyoNight"
+theme = "TokyoNight"
 # theme = teide_darker
-theme = meowsoot
-background = #0D0D17
+# theme = meowsoot
 
 
 # => ===
 # font-family = JetBrainsMono Nerd Font Mono
-font-family = JetBrainsMono Nerd Font
+# font-family = JetBrainsMono Nerd Font
 
 # font-family = Maple Mono NF
 # font-codepoint-map = U+E718=JetBrainsMono Nerd Font Mono
 # font-feature=cv02, cv31
 
-# font-family = Monaspace Neon Var
-# font-feature=calt, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, liga
+font-family = Monaspace Neon Var
+font-feature=calt, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, liga
+
+# font-family = Lilex Nerd Font Mono
 
 # font-family=GeistMono Nerd Font
 # font-codepoint-map = U+E718=JetBrainsMono Nerd Font Mono
 
-background-opacity = 0.88
-background-blur-radius = 25
+
+# background = #0D0D17
+# background-opacity = 0.88
+# background-blur-radius = 25
+
+background = #000000
+# background = #141316
+background-opacity = 0.80
+background-blur-radius = 24
 
 font-size = 16
 # font-thicken = true
