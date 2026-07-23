@@ -28,7 +28,18 @@ $character
 # $all\
 # """
 
-palette = "meowsoot"
+palette = "dim_night"
+
+[palettes.dim_night]
+# Core
+black = "#050505"
+red = "#ea4a5a"
+green = "#34d058"
+yellow = "#f8ca73"
+blue = "#8BB1FF"
+purple = "#BBB0FF"
+cyan = "#33D6EF"
+white = "#e5e5e5"
 
 [palettes.night_owl]
 black  = '#011627'
@@ -84,17 +95,6 @@ white = "#e3e5e9"
 yellow = "#e3d18a"
 
 
-[palettes.poimandres]
-# black = "#1d3b53"
-black = "#15161e"
-blue = "#89DDFF"
-cyan = "#7fdbca"
-green = "#5DE4C7"
-purple = "#D0679D"
-red = "#D0679D"
-white = "#E4F0FB"
-yellow = "#FFFAC2"
-
 [palettes.vercel]
 black = "#15161e"
 blue = "#43AAF9"
@@ -104,17 +104,6 @@ purple = "#B267E6"
 red = "#E61F44"
 white = "#DCE3EA"
 yellow = "#E6DB74"
-
-# Define Nord colors
-[palettes.nord]
-black = '#3b4252'
-blue = '#89b4fa'
-cyan = '#8fbcbb'
-green = '#b4d287'
-purple = '#c895c7'
-red = '#d87c7d'
-white = '#eceff4'
-yellow = '#f0c674'
 
 [palettes.teide_darker]
 black = '#12161a'
@@ -126,28 +115,6 @@ purple = '#B2A3FF'
 cyan = '#0AE7FF'
 white = '#E7EAEE'
 
-[palettes.meowsoot]
-black = '#171616'
-red = '#e99696'
-green = '#98cdaa'
-yellow = '#dfd286'
-blue = '#96bddf'
-purple = '#eaa4c9'
-cyan = '#96d8e3'
-white = '#e2e0df'
-bright_black = '#454240'
-bright_red = '#f0b7b7'
-bright_green = '#badec6'
-bright_yellow = '#eee7c4'
-bright_blue = '#b5d0e8'
-bright_purple = '#eec4d9'
-bright_cyan = '#c4e7ee'
-bright_white = '#e2e0df'
-separator = '#454240'
-lavender = '#eec4d9'
-peach = '#e99696'
-mantle = '#171616'
-foam = '#353331'
 
 [palettes.tokyo_night]
 black = '#15161e'
@@ -158,87 +125,6 @@ purple = '#bb9af7'
 red = '#f7768e'
 white = '#a9b1d6'
 yellow = '#e0af68'
-
-[palettes.maple_dark]
-black   = '#333333'
-red     = '#edabab'
-green   = '#a4dfae'
-yellow  = '#eecfa0'
-blue    = '#8fc7ff'
-purple  = '#d2ccff'
-cyan    = '#a1e8e5'
-white   = '#f3f2f2'
-bright_black   = '#666666'
-bright_red     = '#ffc4c4'
-bright_green   = '#bdf8c7'
-bright_yellow  = '#ffe8b9'
-bright_blue    = '#a8e0ff'
-bright_purple  = '#ebe5ff'
-bright_cyan    = '#bafffe'
-bright_white   = '#ffffff'
-
-[palettes.catppuccin]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-orange = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
-
-[palettes.sonokai]
-black = "#181a1c"
-bg_dim = "#252630"
-bg0 = "#2b2d3a"
-bg1 = "#333648"
-bg2 = "#363a4e"
-bg3 = "#393e53"
-bg4 = "#3f445b"
-bg_red = "#ff6188"
-diff_red = "#55393d"
-bg_green = "#a9dc76"
-diff_green = "#394634"
-bg_blue = "#77d5f0"
-diff_blue = "#354157"
-diff_yellow = "#4e432f"
-fg = "#e1e3e4"
-red = "#fb617e"
-orange = "#f89860"
-yellow = "#edc763"
-green = "#9ed06c"
-blue = "#6dcae8"
-purple = "#bb97ee"
-grey = "#7e8294"
-grey_dim = "#5a5e7a"
-
-[palettes.rose_pine]
-black  = '#191724'
-blue   = '#31748f'
-cyan   = '#9ccfd8'
-green  = '#56949f'
-purple = '#c4a7e7'
-red    = '#eb6f92'
-white  = '#e0def4'
-yellow = '#f6c177'
 
 [palettes.vira]
 black  = '#0f111a'
@@ -337,9 +223,18 @@ RedHatEnterprise = "󱄛"
 #style_root = "bg:surface0 fg:text"
 #format = '[ $user ]($style)'
 
-[directory]
-style = "blue" #used to be sapphire
+
+ [directory]
+style = "fg:blue"
 format = "[ $path ]($style)"
+truncation_length = 4
+truncation_symbol = "…/"
+truncate_to_repo = true
+read_only = " 󰌾"
+
+# [directory]
+# style = "fg:cyan"
+# format = "[ $path ]($style)"
 #truncation_length = 4
 #truncation_symbol = "…/"
 
@@ -378,20 +273,34 @@ format = "at $output"
 [git_branch]
 symbol = "[](black) "
 # format =  ' [$symbol$branch(:$remote_branch)]($style)[]'
-style = "fg:purple bg:black"
+style = "fg:blue bg:black"
 format =  '  on [$symbol$branch]($style)[](black)'
 
 [git_status]
 format = ' [($all_status$ahead_behind )]($style)'
 
 [nodejs]
-# symbol = ""
 symbol = ''
 format = '[ $symbol( $version) ]($style)'
+detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts"]
+detect_files = [
+  "package.json",
+  ".node-version",
+  ".nvmrc",
+  "!bunfig.toml",
+  "!bun.lock",
+  "!bun.lockb",
+]
+detect_folders = ["node_modules"]
 
+[bun]
+symbol = ''
+style = "bold white"
+format = '[ $symbol( $version) ]($style)'
+detect_files = ["bun.lock", "bun.lockb", "bunfig.toml"]
 [c]
 symbol = " "
-format = '[[ $symbol( $version) ]]($style)'
+format = '[ $symbol( $version) ]($style)'
 
 [rust]
 symbol = ""
@@ -402,34 +311,39 @@ symbol = ""
 format = '[ $symbol( $version) ]($style)'
 detect_files = ["go.mod"]
 
-[php]
-symbol = ""
-format = '[[ $symbol( $version) ]]($style)'
-
 [java]
 symbol = " "
-format = '[[ $symbol( $version) ]]($style)'
+format = '[ $symbol( $version) ]($style)'
+
+
+[dart]
+symbol = " "
+format = '[ $symbol( $version) ]($style)'
 
 [kotlin]
 symbol = ""
+format = '[ $symbol( $version) ]($style)'
 
-format = '[[ $symbol( $version) ]]($style)'
 
-[haskell]
-symbol = ""
-
-format = '[[ $symbol( $version) ]]($style)'
+[lua]
+symbol = ""
+format = '[ $symbol( $version) ]($style)'
 
 [python]
 symbol = ""
-
-#
 format = "[ $symbol( $version) ]($style)"
-# format = "via [$symbol($version)]($style) "
 
 [docker_context]
 symbol = ""
-format = '[ $symbol( $context) ]($style)'
+format = '[ $symbol ]($style)'
+style = "fg:cyan"
+
+[package]
+disabled = true
+# [package]
+# symbol = "󰏗"
+# format = '[ $symbol $version ]($style)'
+# style = "fg:yellow"
 
 
 
@@ -443,7 +357,8 @@ style = "bg:peach"
 format = '[[  $time ](fg:mantle bg:foam)]($style)'
 
 [character]
-success_symbol = "[❯](fg:green)"
+success_symbol = "[❯](fg:blue)"
+# success_symbol = "[ ](bold fg:blue)"
 error_symbol = "[❯](fg:red)"
 vimcmd_symbol = '[](bold fg:green)'
 vimcmd_replace_one_symbol = '[](bold fg:purple)'
